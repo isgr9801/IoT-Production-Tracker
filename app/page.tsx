@@ -1,28 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { useAuth } from "../components/AuthProvider";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  const { user } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (user) {
-      router.push("/dashboard");
-    }
-  }, [user, router]);
+    router.replace("/login"); // Redirects instantly without a UI flash
+  }, [router]);
 
-  return (
-    <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-4xl font-bold mb-6">Welcome to My App</h1>
-      <p className="text-lg mb-4">Sign in to access your dashboard.</p>
-      <button
-        onClick={() => router.push("/login")}
-        className="bg-blue-500 text-white px-6 py-2 rounded-md hover:bg-blue-600"
-      >
-        Login / Signup
-      </button>
-    </div>
-  );
+  return null; // No UI is rendered, it just redirects
 }
