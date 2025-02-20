@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { AuthProvider } from "@/components/AuthProvider";
 import { ThemeProvider } from "@/context/ThemeContext";
 import "../styles/globals.css";
