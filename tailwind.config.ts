@@ -1,18 +1,33 @@
-import type { Config } from "tailwindcss";
-
-export default {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "primary": "#000000", // Update based on Vercel UI
+        "secondary": "#1E1E1E",
       },
     },
   },
   plugins: [],
-} satisfies Config;
+};
+
+
+
+
+
+// /** @type {import('tailwindcss').Config} */
+// module.exports = {
+//   darkMode: "class",
+//   content: [
+//     "./app/**/*.{js,ts,jsx,tsx}",
+//     "./components/**/*.{js,ts,jsx,tsx}",
+//   ],
+//   theme: {
+//     extend: {},
+//   },
+//   plugins: [],
+// };
