@@ -1,11 +1,23 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export function middleware(request: NextRequest) {
-  const isAuthenticated = request.cookies.has("authToken");
-  const isProtectedRoute = request.nextUrl.pathname.startsWith("/dashboard");
+export function middleware(req: NextRequest) {
+  const isLoggedIn = req.cookies.get("firebaseAuthToken");
+  const { pathname } = req.nextUrl;
 
-  if (isProtectedRoute && !isAuthenticated) {
-    return NextResponse.redirect(new URL("/login", request.url));
+  // Allow access to login page for non-logged-in users
+  if (pathname === "/login" && isLoggedIn) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
   }
+
+  // Protect dashboard route, redirecting unauthenticated users
+  if (!isLoggedIn && pathname === "/dashboard") {
+    return NextResponse.redirect(new URL("/login", req.url));
+  }
+
+  return NextResponse.next();
 }
+
+// Apply middleware only to necessary routes
+export const config = {
+  matcher: ["/dashboard", "/login"],
+};

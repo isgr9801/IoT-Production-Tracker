@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../../lib/firebase";
+import { auth } from "../../lib/firebase";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
 import { Moon, Sun } from "lucide-react";

@@ -1,38 +1,34 @@
 "use client";
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { User, onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../lib/firebase";
 
-interface AuthContextType {
-  user: User | null;
-  logout: () => Promise<void>;
-}
+import { createContext, useContext, useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { setCookie, deleteCookie } from "cookies-next";
+import { app } from "../lib/firebase";
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const auth = getAuth(app);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthContext = createContext<{ user: User | null }>({
+  user: null,
+});
+
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-      setLoading(false);
+      if (user) {
+        const token = await user.getIdToken();
+        setCookie("firebaseAuthToken", token, { maxAge: 60 * 60 * 24, path: "/" }); // 1 day expiry
+      } else {
+        deleteCookie("firebaseAuthToken");
+      }
     });
 
     return () => unsubscribe();
   }, []);
 
-  const logout = async () => {
-    await signOut(auth);
-    setUser(null);
-  };
-
-  return (
-    <AuthContext.Provider value={{ user, logout }}>
-      {!loading ? children : <p>Loading...</p>}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>;
 };
 
 export const useAuth = () => {
