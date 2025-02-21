@@ -21,7 +21,7 @@ export default function Login() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard");
+      router.replace("/dashboard");
     } catch (err) {
       setError("Invalid email or password. Try again.");
     }

@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUser(user);
       if (user) {
         const token = await user.getIdToken();
-        setCookie("firebaseAuthToken", token, { maxAge: 60 * 60 * 24, path: "/" }); // 1 day expiry
+        setCookie("firebaseAuthToken", token, { maxAge: 60 * 60 * 24, path: "/" });
       } else {
         deleteCookie("firebaseAuthToken");
       }
