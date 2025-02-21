@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/context/ThemeContext";
+import { useAuth } from "@/components/AuthProvider";
 import { Moon, Sun } from "lucide-react";
 
 export default function Login() {
@@ -12,16 +13,28 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const router = useRouter();
+  const { user } = useAuth();
 
   const { darkMode, toggleDarkMode } = useTheme();
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/dashboard");
+    }
+  }, [user, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      router.replace("/dashboard");
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      if (userCredential.user) {
+        // Wait for Firebase
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        router.replace("/dashboard");
+      }
     } catch (err) {
       setError("Invalid email or password. Try again.");
     }
@@ -29,7 +42,6 @@ export default function Login() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
-      {/* Dark mode toggle */}
       <button onClick={toggleDarkMode} className="absolute top-4 right-4 p-2">
         {darkMode ? <Sun size={22} /> : <Moon size={22} />}
       </button>
