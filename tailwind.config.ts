@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -8,8 +9,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        "primary": "#000000", // Update based on Vercel UI
-        "secondary": "#1E1E1E",
+        primary: "#000000",
+        secondary: "#1E1E1E",
       },
     },
   },

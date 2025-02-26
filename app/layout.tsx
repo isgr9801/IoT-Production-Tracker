@@ -1,14 +1,20 @@
 "use client";
+import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/components/AuthProvider";
-import { ThemeProvider } from "@/context/ThemeContext";
 import "../styles/globals.css";
+import Head from "next/head";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="bg-white dark:bg-gray-900 text-black dark:text-white">
+    <html lang="en" suppressHydrationWarning>
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <body>
         <AuthProvider>
-          <ThemeProvider>{children}</ThemeProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            {children}
+          </ThemeProvider>
         </AuthProvider>
       </body>
     </html>

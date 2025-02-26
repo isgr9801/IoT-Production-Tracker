@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import Sidebar from "../../components/Sidebar";
 import Header from "../../components/Header";
 
+import DashboardCard from "../../components/Site/DashboardCard";
 
 export default function DashboardPage() {
   const { user } = useAuth();
@@ -27,6 +28,19 @@ export default function DashboardPage() {
         <main className="p-6">
           <h2 className="text-2xl font-semibold">Dashboard Overview</h2>
           <p className="text-gray-600 mt-2">Your latest stats and reports will be displayed here.</p>
+            
+            {/* Cards Grid */}
+            <div className="flex flex-wrap gap-6">
+              <DashboardCard />
+              
+              {/* <DashboardCard />
+              <DashboardCard />
+              <DashboardCard />
+              <DashboardCard /> */}
+            </div>
+
+
+
         </main>
       </div>
     </div>

@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import Link from "next/link";
 import { Menu, BarChart2, Package, Users, Settings } from "lucide-react";
@@ -16,22 +15,20 @@ const Sidebar = () => {
 
   return (
     <aside
-      className={`h-screen ${expanded ? "w-48" : "w-16"} bg-gray-900 text-white flex flex-col items-center py-4 gap-6 transition-all duration-300`}
+      className={`h-screen ${expanded ? "w-48" : "w-16"} bg-gray-900 dark:bg-gray-800 text-white flex flex-col items-center py-4 gap-6 transition-all`}
     >
-      {/* Menu Toggle Button */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="p-3 rounded-lg hover:bg-gray-800"
+        className="p-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
       >
         <Menu size={22} />
       </button>
 
-      {/* Menu Items */}
       {menuItems.map((item, index) => (
         <Link
           key={index}
           href={item.path}
-          className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 w-full"
+          className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-700 w-full transition-colors"
         >
           {item.icon}
           {expanded && <span className="text-sm">{item.label}</span>}
