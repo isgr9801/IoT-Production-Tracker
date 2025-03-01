@@ -21,9 +21,9 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 
 sample .env file
-	NEXT_PUBLIC_FIREBASE_API_KEY="apikey"
-	NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="wfirebase auth domain"
-	NEXT_PUBLIC_FIREBASE_PROJECT_ID="project ID"
-	NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="Storage bucket"
-	NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="messaging sender id"
-	NEXT_PUBLIC_FIREBASE_APP_ID= "app id"
+#NEXT_PUBLIC_FIREBASE_API_KEY="apikey"
+#NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN="wfirebase auth domain"
+#NEXT_PUBLIC_FIREBASE_PROJECT_ID="project ID"
+#NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET="Storage bucket"
+#NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID="messaging sender id"
+#NEXT_PUBLIC_FIREBASE_APP_ID= "app id"
