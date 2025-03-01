@@ -1,48 +1,20 @@
 "use client";
-import { useAuth } from "../../components/AuthProvider";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import Sidebar from "../../components/Sidebar";
-import Header from "../../components/Header";
-
 import DashboardCard from "../../components/Site/DashboardCard";
 
 export default function DashboardPage() {
-  const { user } = useAuth();
-  const router = useRouter();
+	return (
+		<div>
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/login");
-    }
-  }, [user, router]);
+			<a href="/dashboard" className="text-2xl font-semibold text-blue-600 underline dark:text-blue-500 hover:no-underline cursor-pointer">Dashboard</a>
+			<p className="text-gray-600 dark:text-gray-300 mt-2">
+				home /dashboard
+			</p>
 
-  if (!user) return <p>Redirecting to login...</p>;
-
-
-  return (
-    <div className="flex h-screen min-h-screen bg-white dark:bg-gray-900 text-black dark:text-white">
-      <Sidebar />  
-      <div className="flex-1">
-        <Header />
-        <main className="p-6">
-          <h2 className="text-2xl font-semibold">Dashboard Overview</h2>
-          <p className="text-gray-600 mt-2">Your latest stats and reports will be displayed here.</p>
-            
-            {/* Cards Grid */}
-            <div className="flex flex-wrap gap-6">
-              <DashboardCard />
-              
-              {/* <DashboardCard />
-              <DashboardCard />
-              <DashboardCard />
-              <DashboardCard /> */}
-            </div>
-
-
-
-        </main>
-      </div>
-    </div>
-  );
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+				<DashboardCard />
+				<DashboardCard />
+				<DashboardCard />
+			</div>
+		</div>
+	);
 }
