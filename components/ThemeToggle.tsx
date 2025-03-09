@@ -11,7 +11,6 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  // ✅ prevent and stops hydration errors by redirectng null
   if (!mounted) return null;
 
   return (
