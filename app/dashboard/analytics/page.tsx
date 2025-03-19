@@ -96,7 +96,7 @@ const Page = () => {
 
             <h2 className="text-2xl font-semibold">Production Analytics Dashboard</h2>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
-                Production operation/failure statistics for analysis.
+                Production operation statistics for analysis.
             </p>
 
             {/* Graph Container */}
