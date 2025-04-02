@@ -8,9 +8,9 @@ const Sidebar = () => {
 	const [expanded, setExpanded] = useState(false);
 
 	const menuItems = [
-		{ icon: <Gauge size={22} />, path: "/dashbaord", label: "Dashboard" },
+		{ icon: <Gauge size={22} />, path: "/dashboard", label: "Dashboard" },
 		{ icon: <Package size={22} />, path: "/dashboard/products", label: "Product Operations" },
-		{ icon: <PackageSearch size={22} />, path: "/dashbaord/liveStats", label: "Live Status" },
+		{ icon: <PackageSearch size={22} />, path: "/dashboard/liveStats", label: "Live Status" },
 		{ icon: <ChartSpline size={22} />, path: "/dashboard/analytics", label: "Analytics" },
 		{ icon: <Settings size={22} />, path: "/dashboard/contactus", label: "Contact Us" },
 	];
