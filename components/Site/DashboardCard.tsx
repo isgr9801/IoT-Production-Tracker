@@ -1,25 +1,56 @@
-import React from "react";
+"use client";
+import { useState } from "react";
 
-interface DashboardCardProps {
-  children?: React.ReactNode;
-}
+const Card = ({ title, description, image }: { title: string; description: string; image: string }) => {
+  const [expanded, setExpanded] = useState(false);
 
-const DashboardCard: React.FC<DashboardCardProps> = ({ children }) => {
   return (
-    <div className="w-full bg-white shadow-md rounded-lg p-6 border border-gray-200  max-w-sm">
-      <div>
-        <label htmlFor=""></label>
-        <input
-          id="email"
-          type="email"
-          placeholder="USERNAME/EMAIL"
-          required
-          autoComplete="email"
-          className="mt-2 block w-full rounded-md px-3 py-1.5 text-gray-900 dark:text-white bg-white dark:bg-gray-700 outline-gray-300 focus:outline-indigo-600 sm:text-sm"
-        />
-          </div>
+    <div className="relative flex-1 min-w-[300px] max-w-[400px] h-80 shadow-lg rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 justify-center">
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url(${image})` }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-40 dark:bg-opacity-60"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 p-6 text-white flex flex-col justify-end h-full">
+        <h1 className="text-xl font-bold">{title}</h1>
+        <p className={`text-sm transition-all ${expanded ? "line-clamp-none" : "line-clamp-2"}`}>
+          {description}
+        </p>
+
+        {/* Expand Button */}
+        <button
+          className="mt-2 text-sm underline"
+          onClick={() => setExpanded(!expanded)}
+        >
+          {expanded ? "Show Less" : "More"}
+        </button>
+      </div>
     </div>
   );
 };
 
-export default DashboardCard;
+export default function CardGrid() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 justify-center gap-6 mt-4">
+      <Card
+        title="PLC Delta DVP-14SS2"
+        description="The 2nd generation DVP-SS2 series slim type PLC keeps the basic sequential control functions from the DVP-SS series PLC but with faster execution speed and enhanced real-time monitoring capability."
+        image="/PLC.jpg"
+      />
+      <Card
+        title="ESP8266"
+        description="The ESP8266 is a low-cost, versatile Wi-Fi microcontroller chip. Hv used this chipset to configure webserver to intercommunicate between Webpage and PLC..."
+        image="/ESP1.jpg"
+      />
+      {/* <Card
+        title="ESP8266"
+        description="WiFi module to set connection between web interface to Delta's PLC."
+        image="/ESP1.jpg"
+      /> */}
+    </div>
+  );
+}

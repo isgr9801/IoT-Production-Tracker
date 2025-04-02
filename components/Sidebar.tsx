@@ -1,17 +1,17 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, BarChart2, Package, Users, Settings, LayoutDashboard } from "lucide-react";
-import DashboardCard from "./Site/DashboardCard";
+import { Menu,Gauge,ChartSpline, PackageSearch, Package, Users, Settings, LayoutDashboard } from "lucide-react";
+
 
 const Sidebar = () => {
 	const [expanded, setExpanded] = useState(false);
 
 	const menuItems = [
-		
+		{ icon: <Gauge size={22} />, path: "/dashbaord", label: "Dashboard" },
 		{ icon: <Package size={22} />, path: "/dashboard/products", label: "Product Operations" },
-		{ icon: <BarChart2 size={22} />, path: "/dashboard/analytics", label: "Analytics" },
-		// { icon: <Users size={22} />, path: "/customers", label: "Customers" },
+		{ icon: <PackageSearch size={22} />, path: "/dashbaord/liveStats", label: "Live Status" },
+		{ icon: <ChartSpline size={22} />, path: "/dashboard/analytics", label: "Analytics" },
 		{ icon: <Settings size={22} />, path: "/dashboard/contactus", label: "Contact Us" },
 	];
 
