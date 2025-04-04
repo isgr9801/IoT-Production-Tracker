@@ -26,5 +26,8 @@ export async function GET() {
         console.error("Error in API:", err); // Debug
         const errorMessage = err instanceof Error ? err.message : "Unknown error.";
         return NextResponse.json({ success: false, error: errorMessage });
+
+
+        // this is okkk
     }
 }
