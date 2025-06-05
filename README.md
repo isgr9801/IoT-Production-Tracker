@@ -1,3 +1,6 @@
+![Deploy Status](https://github.com/isgr9801/IoT-Production-Tracker/actions/workflows/deploy.yml/badge.svg)
+
+
 This is a [Next.js](https://nextjs.org) project to handle IoT based microcontrollers and to visualize data reports received
 
 ##Technology Used
